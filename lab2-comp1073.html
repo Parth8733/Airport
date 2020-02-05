@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Lab 2 | COMP1073 Client-Side JavaScript</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Airports</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Airport</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    var airportList = document.querySelector("tbody");
+    airportList.innerHTML = "";
+    var airports = [
+      "Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK",
+      "John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK",
+      "Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ",
+      "London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR",
+      "Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND"
+    ];
+
+    for (var i = 0; i < airports.length; i++) {
+      var input = airports[i];
+
+      // Put your code here inside this loop
+      var commaIndex = airports[i].indexOf(",");
+      var airportName = airports[i].substr(0, commaIndex);
+      var airportCode = airports[i].substr(
+        airports[i].length - 3,
+        airports[i].length
+      );
+      var strLength = airports[i].length;
+      var endOfStr = strLength - 4;
+      var airportUrl = airports[i].slice(commaIndex + 2, endOfStr);
+
+      var hyperlink = `<td><a href="${airportUrl}">${airportCode}</td></a> 
+                        <td>${airportName}</td></tr>`;
+      var listItem = document.createElement("tr");
+      listItem.innerHTML = hyperlink;
+      airportList.appendChild(listItem);
+    }
+  </script>
+</html>
